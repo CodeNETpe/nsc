@@ -14,7 +14,7 @@
     /* =================================================================
        1 · SWIPER — slider principal con efecto FADE
     ================================================================= */
-    if (typeof Swiper !== 'undefined') {
+    if (typeof Swiper !== 'undefined' && document.querySelector('.heroSwiper')) {
       new Swiper('.heroSwiper', {
         effect: 'fade',
         fadeEffect: { crossFade: true },
@@ -70,11 +70,13 @@
     var hamburger = document.getElementById('hamburger');
     var nav       = document.getElementById('nav');
     var overlay   = document.getElementById('navOverlay');
-    var MOBILE    = '(max-width: 960px)';
+    var MOBILE    = '(max-width: 1180px)';
+    var overlayCloseTimer;
 
     function isMobile() { return window.matchMedia(MOBILE).matches; }
 
     function openMenu() {
+      clearTimeout(overlayCloseTimer);
       nav.classList.add('is-open');
       hamburger.classList.add('is-open');
       hamburger.setAttribute('aria-expanded', 'true');
@@ -91,7 +93,8 @@
       hamburger.setAttribute('aria-label', 'Abrir menú');
       document.body.classList.remove('is-locked');
       overlay.classList.remove('is-visible');
-      setTimeout(function () { overlay.hidden = true; }, 320);
+      clearTimeout(overlayCloseTimer);
+      overlayCloseTimer = setTimeout(function () { overlay.hidden = true; }, 320);
       document.querySelectorAll('.has-drop.is-open').forEach(function (li) { li.classList.remove('is-open'); });
     }
 
@@ -115,6 +118,8 @@
         var parent = link.parentElement;
         if (!parent.classList.contains('is-open')) {
           e.preventDefault();
+          // Primer toque: abrir el submenú sin cerrar el panel ni hacer scroll.
+          e.stopImmediatePropagation();
           document.querySelectorAll('.has-drop.is-open').forEach(function (li) {
             if (li !== parent) li.classList.remove('is-open');
           });
@@ -124,11 +129,9 @@
     });
 
     /* Cerrar el menú al pulsar cualquier enlace de navegación real */
-    nav && nav.querySelectorAll('a[href^="#"]').forEach(function (a) {
-      a.addEventListener('click', function () {
-        if (a.parentElement.parentElement.classList.contains('nav__list') &&
-            a.parentElement.classList.contains('has-drop') && isMobile() &&
-            !a.parentElement.classList.contains('is-open')) return;
+    nav && nav.querySelectorAll('a[href]').forEach(function (a) {
+      a.addEventListener('click', function (e) {
+        if (e.defaultPrevented) return;
         if (nav.classList.contains('is-open')) closeMenu();
       });
     });
@@ -160,9 +163,11 @@
     /* =================================================================
        5 · HEADER con sombra + resaltado del enlace activo
     ================================================================= */
-    var navLinks = Array.prototype.slice.call(document.querySelectorAll('.nav__list > li > .nav__link'));
+    // Solo las anclas de esta página participan en el resaltado por scroll.
+    // Las rutas como ../#servicios no son selectores CSS.
+    var navLinks = Array.prototype.slice.call(document.querySelectorAll('.nav__list > li > .nav__link[href^="#"]'));
     var sections = navLinks
-      .map(function (l) { return document.querySelector(l.getAttribute('href')); })
+      .map(function (l) { return document.getElementById(l.getAttribute('href').slice(1)); })
       .filter(Boolean);
     var toTop = document.getElementById('toTop');
     var ticking = false;

@@ -1,0 +1,260 @@
+/* ======================================================================
+   NSC · Docentes
+   Extensión de la identidad institucional. Estilos solo de esta página.
+   ====================================================================== */
+
+.docentes-page{background:var(--off);}
+.docentes-page .cta{overflow:hidden;}
+.docentes-skip{
+  position:fixed;top:10px;left:20px;z-index:200;padding:12px 20px;
+  background:var(--navy);color:#fff;border-radius:8px;font-size:.85rem;
+  transform:translateY(-160%);transition:transform .2s;
+}
+.docentes-skip:focus{transform:translateY(0);}
+.docentes-page .drop a[aria-current="page"]{
+  background:#fff3f2;color:var(--red);font-weight:600;
+}
+
+/* Cabecera interior: imagen y degradado azul del sitio principal. */
+.docentes-hero{
+  position:relative;isolation:isolate;overflow:hidden;
+  background:var(--grad-hero);color:#fff;
+}
+.docentes-hero__media{position:absolute;inset:0 0 0 auto;width:62%;z-index:-3;}
+.docentes-hero__media img{
+  width:100%;height:100%;object-fit:cover;object-position:58% 53%;
+}
+.docentes-hero__shade{
+  position:absolute;inset:0;z-index:-2;
+  background:
+    linear-gradient(90deg,#051d36 0%,#0a2444 29%,rgba(10,36,68,.94) 42%,rgba(10,36,68,.43) 64%,rgba(5,29,54,.12) 100%),
+    linear-gradient(0deg,rgba(5,29,54,.62),transparent 64%);
+}
+.docentes-hero__lines{
+  position:absolute;width:360px;height:350px;right:20%;bottom:38px;
+  z-index:-1;pointer-events:none;opacity:.63;animation:floatY 12s ease-in-out infinite;
+}
+.docentes-hero__inner{
+  position:relative;min-height:326px;display:flex;align-items:center;
+  padding-block:42px;
+}
+.docentes-hero__content{max-width:570px;animation:docentesIn .7s var(--ease) both;}
+.docentes-hero__eyebrow{
+  display:flex;align-items:center;gap:11px;margin-bottom:14px;
+  color:var(--gold-2);font-size:.72rem;font-weight:600;
+  letter-spacing:.2em;text-transform:uppercase;
+}
+.docentes-hero__eyebrow::before{
+  content:"";width:28px;height:2px;flex-shrink:0;background:var(--gold);
+}
+.docentes-hero__title{
+  font-family:var(--font-display);font-size:clamp(4.25rem,7vw,5.75rem);
+  line-height:.98;font-weight:700;letter-spacing:.01em;
+  color:#fff;text-transform:uppercase;margin-bottom:18px;
+}
+.docentes-hero__description{
+  max-width:470px;font-size:.98rem;line-height:1.8;
+  font-weight:300;color:rgba(255,255,255,.85);margin-bottom:21px;
+}
+.docentes-hero__jump{
+  display:inline-flex;align-items:center;gap:12px;padding-block:4px;
+  color:var(--gold-2);font-size:.77rem;font-weight:600;letter-spacing:.035em;
+}
+.docentes-hero__jump i{font-size:.8rem;transition:transform .25s var(--ease);}
+.docentes-hero__jump:hover{color:#fff;}
+.docentes-hero__jump:hover i{transform:translateY(4px);}
+.docentes-hero__caption{
+  position:absolute;right:26px;bottom:32px;display:flex;align-items:center;gap:10px;
+  padding:10px 16px;border:1px solid rgba(255,255,255,.25);border-radius:8px;
+  background:rgba(5,29,54,.42);backdrop-filter:blur(8px);
+  font-size:.73rem;font-weight:400;letter-spacing:.025em;
+  box-shadow:0 4px 24px rgba(0,0,0,.08);
+}
+.docentes-hero__caption i{color:var(--gold-2);font-size:1rem;}
+
+/* Pie de cabecera: ruta de navegación y fecha local de Perú. */
+.docentes-location{
+  position:relative;background:rgba(5,25,48,.8);
+  border-top:1px solid rgba(255,255,255,.12);backdrop-filter:blur(10px);
+}
+.docentes-location__inner{
+  display:flex;align-items:center;justify-content:space-between;gap:20px;
+  min-height:66px;padding-block:12px;
+}
+.docentes-breadcrumb ol{
+  display:flex;align-items:center;gap:12px;flex-wrap:wrap;
+  list-style:none;padding:0;margin:0;font-size:.76rem;
+}
+.docentes-breadcrumb li{display:flex;align-items:center;gap:12px;}
+.docentes-breadcrumb li+li::before{
+  content:"";display:block;width:5px;height:5px;
+  border-top:1px solid rgba(255,255,255,.42);border-right:1px solid rgba(255,255,255,.42);
+  transform:rotate(45deg);margin-right:2px;
+}
+.docentes-breadcrumb a{color:rgba(255,255,255,.66);transition:color .2s;}
+.docentes-breadcrumb a:hover{color:var(--gold-2);}
+.docentes-breadcrumb a i{margin-right:6px;font-size:.7rem;}
+.docentes-breadcrumb [aria-current="page"]{color:#fff;font-weight:500;}
+.docentes-date{display:flex;align-items:center;gap:11px;flex-shrink:0;}
+.docentes-date__icon{
+  display:grid;place-items:center;flex-shrink:0;width:31px;height:31px;border-radius:7px;
+  color:var(--gold-2);background:rgba(201,162,39,.11);border:1px solid rgba(201,162,39,.2);
+  font-size:.85rem;
+}
+.docentes-date__label{
+  font-size:.58rem;line-height:1.4;text-transform:uppercase;letter-spacing:.15em;
+  color:rgba(255,255,255,.55);display:block;
+}
+.docentes-date time{display:block;font-size:.73rem;line-height:1.65;color:rgba(255,255,255,.91);}
+
+/* Recursos: aire, jerarquía clara y tres tarjetas de la referencia. */
+.docentes-tools{
+  position:relative;padding:62px 0 68px;overflow:hidden;
+  background:
+    radial-gradient(ellipse at 0% 100%,rgba(201,162,39,.045),transparent 50%),
+    var(--off);
+}
+.docentes-tools:focus{outline:none;}
+.docentes-tools__intro{
+  display:flex;align-items:flex-end;justify-content:space-between;gap:28px;
+  margin-bottom:30px;
+}
+.docentes-tools__copy{max-width:660px;}
+.docentes-tools__copy .eyebrow{font-size:.7rem;margin-bottom:8px;}
+.docentes-tools__title{font-size:clamp(1.6rem,2.75vw,2.15rem);margin-bottom:11px;letter-spacing:-.03em;}
+.docentes-tools__description{font-size:.9rem;font-weight:300;color:#647084;line-height:1.8;max-width:625px;}
+.docentes-tools__count{
+  flex-shrink:0;display:flex;align-items:center;gap:10px;
+  font-size:.7rem;font-weight:500;color:#5b6575;
+  border:1px solid #e8e3db;border-radius:99px;padding:8px 13px;
+  background:#fff;margin-bottom:4px;
+}
+.docentes-tools__count i{color:var(--gold);font-size:.8rem;}
+.docentes-tools__grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px;}
+.docentes-tool{
+  --tool-rgb:0,198,241;--tool-accent:#51e2ff;--tool-start:#00d6ee;--tool-end:#0679ff;
+  position:relative;display:flex;flex-direction:column;min-width:0;overflow:hidden;
+  border:1px solid rgba(15,30,54,.14);border-radius:17px;
+  background:linear-gradient(145deg,#071525 0%,#0c1a2b 58%,#111b2a 100%);
+  color:#fff;box-shadow:0 9px 25px rgba(5,29,54,.09);
+  transition:transform .3s var(--ease),box-shadow .3s var(--ease),border-color .3s;
+}
+.docentes-tool::before{
+  content:"";position:absolute;inset:0 0 auto;height:4px;z-index:1;
+  background:linear-gradient(100deg,var(--tool-start),var(--tool-end));
+}
+.docentes-tool::after{
+  content:"";position:absolute;top:-62px;right:-58px;width:170px;height:170px;
+  background:radial-gradient(circle,rgba(var(--tool-rgb),.11),transparent 70%);
+  pointer-events:none;
+}
+.docentes-tool--unidad{
+  --tool-rgb:255,178,0;--tool-accent:#ffcf36;--tool-start:#ffca00;--tool-end:#ff8300;
+  background:linear-gradient(145deg,#111720 0%,#161b23 58%,#1a1e2a 100%);
+}
+.docentes-tool--programacion{
+  --tool-rgb:177,72,255;--tool-accent:#d6b7ff;--tool-start:#a46aff;--tool-end:#b827ed;
+  background:linear-gradient(145deg,#13152b 0%,#17162b 58%,#1c1a30 100%);
+}
+.docentes-tool:hover,.docentes-tool:focus-within{
+  transform:translateY(-7px);border-color:rgba(var(--tool-rgb),.55);
+  box-shadow:0 20px 38px rgba(5,29,54,.15),0 0 0 1px rgba(var(--tool-rgb),.04);
+}
+.docentes-tool__head{
+  position:relative;display:grid;grid-template-columns:46px minmax(0,1fr) auto;
+  align-items:center;gap:12px;padding:24px 21px 20px;min-height:96px;
+  border-bottom:1px solid rgba(255,255,255,.09);
+}
+.docentes-tool__icon{
+  display:grid;place-items:center;width:46px;height:46px;border-radius:12px;
+  color:#fff;font-size:1.35rem;
+  background:linear-gradient(140deg,var(--tool-start),var(--tool-end));
+  box-shadow:0 0 20px rgba(var(--tool-rgb),.29),inset 0 1px 0 rgba(255,255,255,.3);
+  transition:transform .3s var(--ease);
+}
+.docentes-tool--unidad .docentes-tool__icon{color:#302408;}
+.docentes-tool__title{font-size:.99rem;font-weight:600;line-height:1.38;color:#fff;letter-spacing:-.025em;}
+.docentes-tool__status{
+  display:inline-flex;align-items:center;justify-content:center;padding:4px 7px;
+  border:1px solid rgba(var(--tool-rgb),.34);border-radius:6px;
+  background:rgba(var(--tool-rgb),.1);color:var(--tool-accent);
+  font-size:.5rem;line-height:1.5;font-weight:700;letter-spacing:.08em;text-transform:uppercase;
+  box-shadow:0 0 12px rgba(var(--tool-rgb),.08);
+}
+.docentes-tool:hover .docentes-tool__icon{transform:translateY(-2px) rotate(-4deg);}
+.docentes-tool__body{padding:21px 22px 25px;flex:1;}
+.docentes-tool__body p{font-size:.81rem;font-weight:400;line-height:1.9;color:#b6c3d5;margin:0;}
+.docentes-tool__link{
+  display:flex;align-items:center;justify-content:space-between;gap:14px;min-height:61px;
+  padding:15px 22px;background:rgba(255,255,255,.035);
+  border-top:1px solid rgba(255,255,255,.045);
+  transition:background .25s var(--ease);
+}
+.docentes-tool__link:hover{background:rgba(var(--tool-rgb),.08);}
+.docentes-tool__number{font-family:var(--font-display);font-size:1.22rem;font-weight:600;color:rgba(255,255,255,.21);letter-spacing:.06em;}
+.docentes-tool__action{display:flex;align-items:center;gap:10px;color:var(--tool-accent);font-size:.76rem;font-weight:600;}
+.docentes-tool__action i{font-size:.8rem;transition:transform .25s var(--ease);}
+.docentes-tool__link:hover .docentes-tool__action i{transform:translateX(4px);}
+.docentes-tool__link:focus-visible{outline:2px solid var(--tool-accent);outline-offset:-5px;border-radius:0 0 15px 15px;}
+.docentes-tools__note{
+  display:flex;align-items:center;justify-content:center;gap:9px;margin:25px 0 0;
+  font-size:.72rem;color:#7a8290;font-weight:400;
+}
+.docentes-tools__note i{font-size:.68rem;color:#8c94a2;}
+
+@keyframes docentesIn{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+
+@media(max-width:1120px){
+  .docentes-tools__grid{gap:18px;}
+  .docentes-tool__head{padding:23px 17px 19px;gap:10px;grid-template-columns:42px minmax(0,1fr) auto;}
+  .docentes-tool__icon{width:42px;height:42px;font-size:1.2rem;}
+  .docentes-tool__title{font-size:.91rem;}
+  .docentes-tool__body{padding:19px 18px 22px;}
+  .docentes-tool__link{padding-inline:18px;}
+  .docentes-tool__status{font-size:.47rem;padding:4px 5px;}
+}
+@media(max-width:1000px){
+  .docentes-tools__grid{grid-template-columns:1fr;max-width:650px;margin-inline:auto;gap:22px;}
+  .docentes-tools__intro{display:block;max-width:650px;margin-inline:auto;}
+  .docentes-tools__count{display:inline-flex;margin-top:18px;}
+  .docentes-tool__head{padding:22px 24px 18px;grid-template-columns:46px minmax(0,1fr) auto;gap:15px;min-height:88px;}
+  .docentes-tool__icon{width:46px;height:46px;font-size:1.3rem;}
+  .docentes-tool__title{font-size:1.04rem;}
+  .docentes-tool__status{font-size:.54rem;padding:5px 9px;}
+  .docentes-tool__body{padding:19px 24px 23px;}
+  .docentes-tool__body p{font-size:.86rem;}
+  .docentes-tool__link{padding-inline:24px;}
+  .docentes-hero__caption{display:none;}
+  .docentes-hero__media{width:100%;}
+  .docentes-hero__shade{background:linear-gradient(95deg,rgba(5,29,54,.98) 0%,rgba(10,36,68,.92) 45%,rgba(10,36,68,.49) 100%);}
+}
+@media(max-width:700px){
+  .docentes-hero__inner{min-height:310px;padding-block:38px;}
+  .docentes-hero__content{max-width:490px;}
+  .docentes-hero__title{font-size:4.4rem;}
+  .docentes-hero__eyebrow{font-size:.64rem;letter-spacing:.16em;}
+  .docentes-hero__description{max-width:440px;font-size:.9rem;}
+  .docentes-hero__lines{right:-22%;width:300px;opacity:.28;}
+  .docentes-hero__media img{object-position:66% 53%;}
+  .docentes-location__inner{align-items:flex-start;flex-direction:column;gap:13px;padding-block:17px;}
+  .docentes-breadcrumb ol{font-size:.72rem;}
+  .docentes-breadcrumb li,.docentes-breadcrumb ol{gap:10px;}
+  .docentes-date__label{display:none;}
+  .docentes-date__icon{width:26px;height:26px;border-radius:6px;font-size:.78rem;}
+  .docentes-date time{font-size:.71rem;}
+  .docentes-tools{padding:42px 0 48px;}
+  .docentes-tools__intro{margin-bottom:25px;}
+  .docentes-tools__description{font-size:.85rem;}
+  .docentes-tools__count{font-size:.68rem;margin-top:15px;}
+  .docentes-tools__note{font-size:.66rem;align-items:flex-start;line-height:1.7;}
+  .docentes-tools__note i{margin-top:5px;}
+}
+@media(max-width:380px){
+  .docentes-hero__title{font-size:4rem;}
+  .docentes-hero__eyebrow{font-size:.6rem;letter-spacing:.12em;}
+  .docentes-tool__head{padding:22px 18px 18px;gap:11px;}
+  .docentes-tool__title{font-size:.94rem;}
+  .docentes-tool__status{font-size:.48rem;padding:4px 6px;}
+  .docentes-tool__body{padding-inline:19px;}
+  .docentes-tool__link{padding-inline:19px;}
+}
