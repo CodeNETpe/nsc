@@ -74,7 +74,10 @@
 
 /* Pie de cabecera: ruta de navegación y fecha local de Perú. */
 .docentes-location{
-  position:relative;background:rgba(5,25,48,.8);
+  position:relative;
+  background:
+    linear-gradient(90deg,rgba(144,18,28,.28) 0%,rgba(120,18,34,.09) 45%,rgba(5,25,48,0) 82%),
+    rgba(5,25,48,.8);
   border-top:1px solid rgba(255,255,255,.12);backdrop-filter:blur(10px);
 }
 .docentes-location__inner{
@@ -190,12 +193,15 @@
   border-top:1px solid rgba(255,255,255,.045);
   transition:background .25s var(--ease);
 }
+/* El enlace existente cubre toda la tarjeta: conserva teclado y apertura en pestaña nueva. */
+.docentes-tool__link::after{content:"";position:absolute;inset:0;z-index:2;cursor:pointer;}
 .docentes-tool__link:hover{background:rgba(var(--tool-rgb),.08);}
 .docentes-tool__number{font-family:var(--font-display);font-size:1.22rem;font-weight:600;color:rgba(255,255,255,.21);letter-spacing:.06em;}
 .docentes-tool__action{display:flex;align-items:center;gap:10px;color:var(--tool-accent);font-size:.76rem;font-weight:600;}
 .docentes-tool__action i{font-size:.8rem;transition:transform .25s var(--ease);}
 .docentes-tool__link:hover .docentes-tool__action i{transform:translateX(4px);}
-.docentes-tool__link:focus-visible{outline:2px solid var(--tool-accent);outline-offset:-5px;border-radius:0 0 15px 15px;}
+.docentes-tool__link:focus-visible{outline:none;}
+.docentes-tool__link:focus-visible::after{outline:2px solid var(--tool-accent);outline-offset:-5px;border-radius:16px;}
 .docentes-tools__note{
   display:flex;align-items:center;justify-content:center;gap:9px;margin:25px 0 0;
   font-size:.72rem;color:#7a8290;font-weight:400;
