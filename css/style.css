@@ -121,6 +121,8 @@ button{font-family:inherit;}
 .btn--gold-outline:hover{background:var(--gold);color:#fff;transform:translateY(-3px);box-shadow:var(--shadow-gold);}
 .btn--white-outline{background:transparent;color:#fff;border-color:rgba(255,255,255,.7);}
 .btn--white-outline:hover{background:#fff;color:var(--red);transform:translateY(-3px);box-shadow:0 14px 30px rgba(0,0,0,.2);}
+.btn--gold{background:var(--grad-gold);color:var(--navy-dark);box-shadow:var(--shadow-gold);}
+.btn--gold:hover{transform:translateY(-3px);box-shadow:0 16px 32px rgba(201,162,39,.42);}
 .btn--block{width:100%;}
 
 /* ---------- 5 · TOPBAR ---------- */
@@ -436,6 +438,42 @@ button{font-family:inherit;}
 .cta h3{color:#fff;font-size:clamp(1.05rem,2.2vw,1.42rem);font-weight:600;margin-bottom:.2rem;}
 .cta p{font-size:.9rem;font-weight:300;color:rgba(255,255,255,.9);margin:0;}
 
+/* ---------- 12B · CINTA HÉROE LECTOR ---------- */
+.lectora{
+  position:relative;overflow:hidden;color:#fff;
+  background:var(--grad-navy);
+  padding:clamp(30px,4vw,46px) 0;
+  border-top:3px solid var(--gold);
+  border-bottom:3px solid var(--gold);
+}
+.lectora__inner{position:relative;z-index:2;display:flex;align-items:center;justify-content:space-between;gap:26px;flex-wrap:wrap;}
+.lectora__left{display:flex;align-items:center;gap:20px;}
+.lectora__icon{
+  flex-shrink:0;width:64px;height:64px;border-radius:50%;
+  display:grid;place-items:center;font-size:1.45rem;color:var(--navy-dark);
+  background:var(--grad-gold);box-shadow:var(--shadow-gold);
+  animation:pulseRingGold 2.6s ease-in-out infinite;
+}
+@keyframes pulseRingGold{0%,100%{box-shadow:0 0 0 0 rgba(201,162,39,.5)}50%{box-shadow:0 0 0 14px rgba(201,162,39,0)}}
+.lectora__eyebrow{
+  display:inline-flex;align-items:center;gap:.45rem;margin-bottom:.35rem;
+  font-size:.72rem;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:var(--gold-2);
+}
+.lectora__eyebrow i{font-size:.75em;}
+.lectora__title{
+  font-family:var(--font-display);text-transform:uppercase;
+  font-size:clamp(1.7rem,3.4vw,2.5rem);font-weight:700;letter-spacing:.03em;line-height:1.02;
+  color:#fff;margin:0 0 .3rem;
+}
+.lectora__tagline{font-size:.95rem;font-weight:300;color:rgba(255,255,255,.88);margin:0;}
+.lectora__tagline strong{font-weight:600;color:var(--gold-2);}
+.lectora__btn{white-space:nowrap;}
+.lectora__arrow{font-size:.9em;transition:transform .3s var(--ease);}
+.lectora__btn:hover .lectora__arrow{transform:translateX(5px);}
+.lectora__glow{position:absolute;border-radius:50%;filter:blur(70px);pointer-events:none;z-index:1;}
+.lectora__glow--a{width:320px;height:320px;top:-150px;right:-90px;background:rgba(201,162,39,.18);}
+.lectora__glow--b{width:280px;height:280px;bottom:-160px;left:-80px;background:rgba(224,26,36,.15);}
+
 /* ---------- 13 · FOOTER ---------- */
 .footer{background:var(--navy-dark);color:rgba(255,255,255,.75);}
 .footer__grid{
@@ -584,6 +622,9 @@ button{font-family:inherit;}
   .footer__bottomInner{justify-content:center;text-align:center;}
   .cta__inner{flex-direction:column;align-items:flex-start;}
   .cta .btn{width:100%;}
+  .lectora__inner{flex-direction:column;align-items:flex-start;}
+  .lectora .btn{width:100%;white-space:normal;}
+  .lectora__icon{width:56px;height:56px;font-size:1.2rem;}
   .fab{right:16px;}
   .fab--wa{bottom:16px;}
   .fab--top{bottom:78px;}
