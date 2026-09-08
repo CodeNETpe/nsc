@@ -26,6 +26,7 @@
 <link rel="stylesheet" href="assets/vendor/aos.css">
 <!-- Estilos propios -->
 <link rel="stylesheet" href="css/style.css?v=lectora-20260908">
+<link rel="stylesheet" href="css/podcast.css?v=podcast-20260908-4">
 </head>
 <body>
 
@@ -367,6 +368,139 @@
 </section>
 
 <!-- ==========================================================
+     6.1 · PODCAST NSC — reproductor y audios de demostración
+========================================================== -->
+<section class="nsc-podcast" id="podcast" data-podcast-tone="red" aria-labelledby="nscPodcastHeading">
+  <div class="container">
+    <div class="nsc-podcast__heading">
+      <span class="nsc-podcast__kicker">Voces que nos unen</span>
+      <h2 class="nsc-podcast__title" id="nscPodcastHeading">Podcast <span>NSC</span></h2>
+      <p class="nsc-podcast__subtitle">La voz de nuestra comunidad educativa.</p>
+      <span class="nsc-podcast__demo"><i class="fa-solid fa-wand-magic-sparkles" aria-hidden="true"></i> Audios de demostración · Voz IA</span>
+    </div>
+
+    <div class="nsc-podcast__grid">
+      <div class="nsc-podcast__featured">
+        <div class="nsc-podcast__topline">
+          <span class="nsc-podcast__signature"><i class="fa-solid fa-headphones" aria-hidden="true"></i> PODCAST NSC</span>
+          <span class="nsc-podcast__state" id="nscPodcastState" aria-hidden="true">Listo</span>
+        </div>
+        <div class="nsc-podcast__intro">
+          <div class="nsc-podcast__art" aria-hidden="true">
+            <span class="nsc-podcast__art-brand">NSC</span>
+            <i class="fa-solid fa-microphone-lines nsc-podcast__art-mic"></i>
+            <span class="nsc-podcast__bars">
+              <span style="--bar-height:10px;--bar-speed:.72s"></span>
+              <span style="--bar-height:17px;--bar-speed:.94s"></span>
+              <span style="--bar-height:23px;--bar-speed:.61s"></span>
+              <span style="--bar-height:14px;--bar-speed:.86s"></span>
+              <span style="--bar-height:21px;--bar-speed:.76s"></span>
+              <span style="--bar-height:13px;--bar-speed:1s"></span>
+              <span style="--bar-height:8px;--bar-speed:.81s"></span>
+            </span>
+            <span class="nsc-podcast__art-caption">VOCES CARMELITANAS</span>
+          </div>
+          <div class="nsc-podcast__episode-copy">
+            <p class="nsc-podcast__label" id="nscPodcastLabel">Episodio destacado</p>
+            <h3 class="nsc-podcast__now-title" id="nscPodcastTitle">Mujeres líderes del mañana</h3>
+            <p class="nsc-podcast__artist">Audio de muestra · Voz IA <span class="nsc-podcast__episode-counter" id="nscPodcastCounter">01 / 04</span></p>
+          </div>
+        </div>
+
+        <audio class="nsc-podcast__audio" id="nscPodcastAudio" controls preload="metadata"
+               src="assets/audio/podcast-demo-lideres.mp3"
+               aria-label="Reproductor de Podcast NSC: Mujeres líderes del mañana">
+          Tu navegador no permite reproducir audio. <a href="assets/audio/podcast-demo-lideres.mp3">Abrir el episodio destacado</a>.
+        </audio>
+
+        <div class="nsc-podcast__custom" id="nscPodcastCustom" role="group" aria-label="Controles del reproductor" hidden>
+          <div class="nsc-podcast__timeline">
+            <input class="nsc-podcast__range" id="nscPodcastSeek" type="range" min="0" max="1" value="0" step="0.1" aria-label="Posición del audio" disabled>
+            <div class="nsc-podcast__times"><span id="nscPodcastElapsed">0:00</span><span id="nscPodcastTotal">--:--</span></div>
+          </div>
+          <div class="nsc-podcast__transport">
+            <button class="nsc-podcast__control" id="nscPodcastPrev" type="button" aria-label="Episodio anterior" title="Episodio anterior" disabled><i class="fa-solid fa-backward-step" aria-hidden="true"></i></button>
+            <button class="nsc-podcast__control nsc-podcast__skip nsc-podcast__skip--back" id="nscPodcastBack" type="button" aria-label="Retroceder 10 segundos" title="Retroceder 10 segundos" disabled><i class="fa-solid fa-rotate-left" aria-hidden="true"></i><span aria-hidden="true">10</span></button>
+            <button class="nsc-podcast__toggle" id="nscPodcastToggle" type="button" aria-label="Reproducir episodio" aria-controls="nscPodcastAudio" aria-pressed="false"><i class="fa-solid fa-play" id="nscPodcastToggleIcon" aria-hidden="true"></i></button>
+            <button class="nsc-podcast__control nsc-podcast__skip nsc-podcast__skip--forward" id="nscPodcastForward" type="button" aria-label="Avanzar 10 segundos" title="Avanzar 10 segundos" disabled><i class="fa-solid fa-rotate-right" aria-hidden="true"></i><span aria-hidden="true">10</span></button>
+            <button class="nsc-podcast__control" id="nscPodcastNext" type="button" aria-label="Episodio siguiente" title="Episodio siguiente"><i class="fa-solid fa-forward-step" aria-hidden="true"></i></button>
+          </div>
+          <div class="nsc-podcast__utilities">
+            <div class="nsc-podcast__volume">
+              <button class="nsc-podcast__control" id="nscPodcastMute" type="button" aria-label="Silenciar audio" aria-pressed="false" title="Silenciar"><i class="fa-solid fa-volume-high" aria-hidden="true"></i></button>
+              <input class="nsc-podcast__range" id="nscPodcastVolume" type="range" min="0" max="1" value="1" step="0.05" aria-label="Volumen del audio">
+            </div>
+            <button class="nsc-podcast__speed" id="nscPodcastSpeed" type="button" aria-label="Cambiar velocidad de reproducción" title="Cambiar velocidad"><i class="fa-solid fa-gauge-high" aria-hidden="true"></i><span id="nscPodcastSpeedLabel">1×</span></button>
+          </div>
+        </div>
+        <p class="nsc-podcast__status" id="nscPodcastStatus" role="status" aria-live="polite" aria-atomic="true">Pulsa reproducir o elige un episodio de la lista.</p>
+      </div>
+
+      <div class="nsc-podcast__playlist" aria-labelledby="nscPodcastLatest">
+        <div class="nsc-podcast__list-heading">
+          <h3 class="nsc-podcast__list-title" id="nscPodcastLatest">Últimos episodios</h3>
+          <div class="nsc-podcast__featured-actions">
+            <button class="nsc-podcast__featured-button" id="nscPodcastFeatured" type="button" aria-controls="nscPodcastAudio" hidden><i class="fa-solid fa-star" aria-hidden="true"></i> Destacado</button>
+            <a class="nsc-podcast__download-featured" href="assets/audio/podcast-demo-lideres.mp3" download="NSC-Mujeres-lideres-del-manana-demo.mp3" data-podcast-download="lideres" aria-label="Descargar Mujeres líderes del mañana en MP3" title="Descargar destacado en MP3"><i class="fa-solid fa-download" aria-hidden="true"></i></a>
+          </div>
+        </div>
+        <ul class="nsc-podcast__episodes">
+          <li>
+            <a class="nsc-podcast__episode nsc-podcast__episode--blue" href="assets/audio/podcast-demo-bienvenida.mp3"
+               data-podcast-episode="bienvenida" data-podcast-tone="blue"
+               aria-label="Escuchar Bienvenida 2026. Audio de demostración con voz de IA.">
+              <span class="nsc-podcast__play" aria-hidden="true">
+                <i class="fa-solid fa-play" data-podcast-icon></i>
+                <span class="nsc-podcast__row-eq"><span></span><span></span><span></span></span>
+              </span>
+              <span class="nsc-podcast__info">
+                <span class="nsc-podcast__episode-title" data-podcast-title>Bienvenida 2026</span>
+                <span class="nsc-podcast__meta">Audio de muestra · Voz IA</span>
+              </span>
+              <span class="nsc-podcast__duration" data-podcast-duration>0:57</span>
+            </a>
+            <a class="nsc-podcast__download nsc-podcast__download--blue" href="assets/audio/podcast-demo-bienvenida.mp3" download="NSC-Bienvenida-2026-demo.mp3" data-podcast-download="bienvenida" aria-label="Descargar Bienvenida 2026 en MP3" title="Descargar MP3"><i class="fa-solid fa-download" aria-hidden="true"></i></a>
+          </li>
+          <li>
+            <a class="nsc-podcast__episode nsc-podcast__episode--gold" href="assets/audio/podcast-demo-exalumnas.mp3"
+               data-podcast-episode="exalumnas" data-podcast-tone="gold"
+               aria-label="Escuchar Exalumnas destacadas. Audio de demostración con voz de IA.">
+              <span class="nsc-podcast__play" aria-hidden="true">
+                <i class="fa-solid fa-play" data-podcast-icon></i>
+                <span class="nsc-podcast__row-eq"><span></span><span></span><span></span></span>
+              </span>
+              <span class="nsc-podcast__info">
+                <span class="nsc-podcast__episode-title" data-podcast-title>Exalumnas destacadas</span>
+                <span class="nsc-podcast__meta">Audio de muestra · Voz IA</span>
+              </span>
+              <span class="nsc-podcast__duration" data-podcast-duration>0:55</span>
+            </a>
+            <a class="nsc-podcast__download nsc-podcast__download--gold" href="assets/audio/podcast-demo-exalumnas.mp3" download="NSC-Exalumnas-destacadas-demo.mp3" data-podcast-download="exalumnas" aria-label="Descargar Exalumnas destacadas en MP3" title="Descargar MP3"><i class="fa-solid fa-download" aria-hidden="true"></i></a>
+          </li>
+          <li>
+            <a class="nsc-podcast__episode nsc-podcast__episode--red" href="assets/audio/podcast-demo-organizacion.mp3"
+               data-podcast-episode="organizacion" data-podcast-tone="red"
+               aria-label="Escuchar Organización escolar. Audio de demostración con voz de IA.">
+              <span class="nsc-podcast__play" aria-hidden="true">
+                <i class="fa-solid fa-play" data-podcast-icon></i>
+                <span class="nsc-podcast__row-eq"><span></span><span></span><span></span></span>
+              </span>
+              <span class="nsc-podcast__info">
+                <span class="nsc-podcast__episode-title" data-podcast-title>Organización escolar</span>
+                <span class="nsc-podcast__meta">Audio de muestra · Voz IA</span>
+              </span>
+              <span class="nsc-podcast__duration" data-podcast-duration>0:59</span>
+            </a>
+            <a class="nsc-podcast__download nsc-podcast__download--red" href="assets/audio/podcast-demo-organizacion.mp3" download="NSC-Organizacion-escolar-demo.mp3" data-podcast-download="organizacion" aria-label="Descargar Organización escolar en MP3" title="Descargar MP3"><i class="fa-solid fa-download" aria-hidden="true"></i></a>
+          </li>
+        </ul>
+        <div class="nsc-podcast__list-foot"><span><i class="fa-solid fa-headphones" aria-hidden="true"></i> Escucha a tu ritmo</span><span>4 audios de muestra</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==========================================================
      7 · CONTACTO
 ========================================================== -->
 <section class="contact" id="contacto">
@@ -505,5 +639,6 @@
 <script src="assets/vendor/swiper-bundle.min.js"></script>
 <script src="assets/vendor/aos.js"></script>
 <script src="js/script.js?v=docentes-20260905"></script>
+<script src="js/podcast.js?v=podcast-20260908-2"></script>
 </body>
 </html>
