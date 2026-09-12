@@ -38,24 +38,22 @@
 .nsc-eco__email-label{display:block;font-size:.53rem;font-weight:400;letter-spacing:.03em;color:#4d6888;}
 .nsc-eco__apps{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 18px;}
 .nsc-eco__apps span{display:inline-block;padding:4px 7px;border:1px solid var(--eco-line);border-radius:6px;color:var(--eco-accent);background:rgba(255,255,255,.72);font-size:.65rem;font-weight:500;line-height:1.55;}
-.nsc-eco__availability{display:block;color:#526984;font-size:.65rem;line-height:1.7;margin:-4px 0 19px;}
 .nsc-eco__action{display:flex;align-items:center;justify-content:space-between;gap:9px;margin-top:auto;padding-top:16px;border-top:1px solid var(--eco-line);color:var(--eco-accent);font-size:.72rem;font-weight:600;line-height:1.55;}
 .nsc-eco__action i{font-size:.7rem;transition:transform .25s var(--ease);}
 .nsc-eco__card:hover .nsc-eco__action i{transform:translate(2px,-2px);}
-.nsc-eco__card--microsoft{
-  --eco-rgb:0,120,212;--eco-accent:#0067b8;--eco-soft:#edf5fc;--eco-title:#343e4b;--eco-copy:#43586f;--eco-line:rgba(0,120,212,.18);--eco-number:rgba(0,120,212,.35);
-  background:radial-gradient(ellipse at 100% 0%,rgba(242,80,34,.08),transparent 46%),linear-gradient(150deg,#fff,#f2f6fb 70%,#e5f0fa);
+.nsc-eco__card--planifica{
+  --eco-rgb:26,42,108;--eco-accent:#1a2a6c;--eco-soft:#eef1f9;--eco-title:#12204f;--eco-copy:#46527a;--eco-line:rgba(26,42,108,.18);--eco-number:rgba(26,42,108,.32);
+  background:radial-gradient(ellipse at 100% 0%,rgba(212,175,55,.14),transparent 48%),linear-gradient(150deg,#fff,#f5f7fc 70%,#eceffa);
 }
-.nsc-eco__card--microsoft::before{background:linear-gradient(90deg,#f25022 0% 25%,#7fba00 25% 50%,#00a4ef 50% 75%,#ffb900 75% 100%);}
+.nsc-eco__card--planifica::before{background:linear-gradient(90deg,#0a1628 0%,#1a2a6c 55%,#d4af37 100%);}
 .nsc-eco__card--canva{
-  --eco-rgb:125,42,232;--eco-accent:#fff;--eco-soft:rgba(255,255,255,.1);--eco-title:#fff;--eco-copy:#f1f7ff;--eco-line:rgba(255,255,255,.28);--eco-number:rgba(255,255,255,.48);
-  background:radial-gradient(ellipse at 100% 0%,rgba(0,196,204,.12),transparent 52%),linear-gradient(145deg,#086d80,#5260c8 60%,#7425d1);
-  border-color:rgba(83,76,190,.4);box-shadow:0 9px 25px rgba(89,61,176,.16);
+  --eco-rgb:125,42,232;--eco-accent:#5b2fb3;--eco-soft:#f4f0fc;--eco-title:#3f2a6b;--eco-copy:#4f5680;--eco-line:rgba(125,42,232,.18);--eco-number:rgba(125,42,232,.32);
+  background:radial-gradient(ellipse at 100% 0%,rgba(0,196,204,.12),transparent 52%),linear-gradient(145deg,#fff,#f5f2fc 66%,#ece6fa);
+  border-color:rgba(125,42,232,.18);box-shadow:0 7px 23px rgba(125,42,232,.09);
 }
 .nsc-eco__card--canva::before{background:linear-gradient(90deg,#00c4cc,#8b3be8);}
-.nsc-eco__card--canva .nsc-eco__icon{width:78px;background:#fff;border-color:rgba(255,255,255,.6);}
+.nsc-eco__card--canva .nsc-eco__icon{width:78px;border-color:var(--eco-line);}
 .nsc-eco__card--canva .nsc-eco__brand{width:64px;height:27px;}
-.nsc-eco__card--canva .nsc-eco__apps span{background:rgba(0,0,0,.07);color:#fff;}
 .nsc-eco__card--drive{
   --eco-rgb:24,128,56;--eco-accent:#137333;--eco-soft:#e6f4ea;--eco-title:#0d5b2c;--eco-copy:#375445;--eco-line:rgba(24,128,56,.2);--eco-number:rgba(24,128,56,.4);
   background:radial-gradient(ellipse at 100% 0%,rgba(251,188,4,.11),transparent 45%),linear-gradient(145deg,#fff,#eff8f2 66%,#dff0e6);
