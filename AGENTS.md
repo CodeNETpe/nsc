@@ -47,7 +47,7 @@ Si algún paso falla: **detenerse y explicar el error exacto**.
 ## 7. Formato de entrega obligatorio
 Cada tarea debe cerrar con tres secciones bien marcadas:
 - **✅ Resumen** — qué se cambió (archivos y descripción breve) y hash del commit final en `main`.
-- **📋 Comandos para actualizar el VPS** — bloque shell exacto con la lista de archivos **web** modificados (ver sección 9).
+- **📋 Comandos para actualizar el VPS** — bloque shell generado con el formato **exacto** de la sección 10, reemplazando todos los marcadores. Si solo se modificó documentación/configuración, escribir «No hay cambios que publicar en el VPS. Solo se actualizó documentación del agente.» y **no** entregar el bloque.
 - **📊 Estado final** — PR fusionado en `main`, rama feature eliminada y lista de archivos del último commit.
 
 ## 8. Despliegue en el VPS
@@ -59,4 +59,68 @@ Cada tarea debe cerrar con tres secciones bien marcadas:
 ## 9. Archivos publicables en el VPS
 - **Nunca** incluir en el bloque "Comandos para actualizar el VPS" archivos de documentación o configuración del agente: `AGENTS.md`, `CLAUDE.md`, `README.md`, ni contenido de las carpetas `.opencode/`, `.agents/`, `.github/`.
 - Incluir **solo archivos web reales**: `.html`, `.css`, `.js`, `.json`, `.png`, `.jpg`, `.svg`, `.webp`, `.ico`, `.woff`, `.woff2`.
-- Si en la tarea solo se modificaron archivos de documentación/configuración, el entregable debe indicar exactamente: **No hay cambios que publicar en el VPS.**
+- Si en la tarea solo se modificaron archivos de documentación/configuración, el entregable debe indicar exactamente: **No hay cambios que publicar en el VPS. Solo se actualizó documentación del agente.**
+
+## 10. Formato exacto del bloque de comandos para el VPS
+Usar **exactamente** este patrón, reemplazando todos los marcadores antes de entregarlo.
+
+Marcadores:
+- `ARCHIVO1 ARCHIVO2 ...` → archivos modificados (separados por espacio, sin comas). Incluir ruta completa si están en subcarpetas (ej. `css/style.css js/script.js index.html`).
+- `HASH_COMMIT_FINAL` → hash completo del commit final en `main`.
+- `DESCRIPCION_CORTA` → descripción breve en minúsculas con guiones (ej. `ecosistema-marcas`).
+- `CADENA_VERIFICACION_1 CADENA_VERIFICACION_2` → cadenas únicas que deben aparecer en el HTML servido después del cambio (ej. `ecosistema-20260911-2 NotebookLM`).
+
+```bash
+(
+  set -e
+  trap 'echo "DETENIDO: comparte la salida antes de repetir comandos."' ERR
+  R="$HOME/repos/nsc"
+  WEB="$HOME/htdocs/colegiocarmelinas.edu.pe"
+
+  if [ "$(id -un)" != "colegiocarmelinas" ]; then
+    echo "Usa la terminal de colegiocarmelinas, no root."
+    exit 1
+  fi
+  cd "$R"
+  test "$(git rev-parse --show-toplevel)" = "$R"
+  test "$(git branch --show-current)" = main
+  test -z "$(git status --porcelain)"
+  test "$(git remote get-url origin | tr '[:upper:]' '[:lower:]')" = "git@github.com:codenetpe/nsc.git"
+  test "$(readlink -f "$WEB")" = "$WEB"
+  test ! -L "$WEB/css" && test -w "$WEB/css" && test -w "$WEB"
+
+  for F in ARCHIVO1 ARCHIVO2; do
+    cmp -- "$R/$F" "$WEB/$F"
+  done
+
+  GIT_SSH_COMMAND="$(git config --local --get core.sshCommand)" git pull --ff-only origin main
+  test "$(git rev-parse HEAD)" = "HASH_COMMIT_FINAL"
+
+  B="$HOME/backups/nsc/antes-DESCRIPCION_CORTA-$(date +%Y%m%d-%H%M%S).tar.gz"
+  (umask 077; mkdir -p "$HOME/backups/nsc"; tar -czf "$B" -C "$WEB" ARCHIVO1 ARCHIVO2)
+  echo "RESPALDO: $B"
+
+  T=""
+  trap '[ -z "$T" ] || rm -f -- "$T"' EXIT
+  for F in ARCHIVO1 ARCHIVO2; do
+    T="$(mktemp "$(dirname "$WEB/$F")/.nsc-publicar-XXXXXX")"
+    install -m 644 "$R/$F" "$T"
+    mv -fT -- "$T" "$WEB/$F"
+    T=""
+    cmp -- "$R/$F" "$WEB/$F"
+  done
+
+  HTML="$(curl -fsSL --max-time 20 https://colegiocarmelinas.edu.pe/)"
+  [[ "$HTML" == *CADENA_VERIFICACION_1* && "$HTML" == *CADENA_VERIFICACION_2* ]]
+
+  echo "PUBLICADO: DESCRIPCION_CORTA"
+  git log -1 --oneline
+)
+```
+
+Reglas del formato:
+1. **Nunca** incluir `AGENTS.md`, `CLAUDE.md`, `README.md` ni contenido de `.opencode/`, `.agents/`, `.github/`. Solo archivos web reales (ver sección 9).
+2. **Cadenas de verificación:** elegir strings únicos presentes en el HTML servido **después** del cambio (cache-busting → cadena de versión; texto nuevo → palabra clave). Si el cambio **no** afecta a `index.html` (solo CSS/JS internos), **omitir** el bloque de `curl` y dejar solo `echo "PUBLICADO: ..."`.
+3. **Idempotencia:** el `cmp` inicial debe fallar limpiamente en una segunda ejecución si los archivos ya están sincronizados.
+4. **Solo documentación** → responder «No hay cambios que publicar en el VPS. Solo se actualizó documentación del agente.» y **no** entregar el bloque.
+5. **Múltiples carpetas** → incluir la ruta completa en la lista `ARCHIVOS`.
