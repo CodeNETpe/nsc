@@ -47,7 +47,7 @@ Si algún paso falla: **detenerse y explicar el error exacto**.
 ## 7. Formato de entrega obligatorio
 Cada tarea debe cerrar con tres secciones bien marcadas:
 - **✅ Resumen** — qué se cambió (archivos y descripción breve) y hash del commit final en `main`.
-- **📋 Comandos para actualizar el VPS** — bloque shell exacto con la lista de archivos modificados.
+- **📋 Comandos para actualizar el VPS** — bloque shell exacto con la lista de archivos **web** modificados (ver sección 9).
 - **📊 Estado final** — PR fusionado en `main`, rama feature eliminada y lista de archivos del último commit.
 
 ## 8. Despliegue en el VPS
@@ -55,3 +55,8 @@ Cada tarea debe cerrar con tres secciones bien marcadas:
 - Clon git: `$HOME/repos/nsc`.
 - Web root: `$HOME/htdocs/colegiocarmelinas.edu.pe`.
 - Flujo: `git pull --ff-only origin main`, respaldo `.tar.gz` en `$HOME/backups/nsc/` y copia de archivos con `install` + verificación `cmp`.
+
+## 9. Archivos publicables en el VPS
+- **Nunca** incluir en el bloque "Comandos para actualizar el VPS" archivos de documentación o configuración del agente: `AGENTS.md`, `CLAUDE.md`, `README.md`, ni contenido de las carpetas `.opencode/`, `.agents/`, `.github/`.
+- Incluir **solo archivos web reales**: `.html`, `.css`, `.js`, `.json`, `.png`, `.jpg`, `.svg`, `.webp`, `.ico`, `.woff`, `.woff2`.
+- Si en la tarea solo se modificaron archivos de documentación/configuración, el entregable debe indicar exactamente: **No hay cambios que publicar en el VPS.**
